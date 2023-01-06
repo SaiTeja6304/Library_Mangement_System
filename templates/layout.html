@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lms.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Library Management System</title>
+</head>
+<body>
+<div class="header">
+    <h1>Library Management System</h1>
+    <div class="index">
+        {% if session.name %}
+            You are logged in as {{ session.name }}. <a href="/logout">Log out</a>.
+        {% else %}
+            You are not logged in. <a href="/login">Log in</a>.
+        {% endif %}
+    </div>
+</div>
+
+<div class="options">
+        <a href="/">Dashboard</a>
+        <a href="view-bookpg">View Books</a>
+        <a href="add-bookpg">Add Books</a>
+        <a href="rem-bookpg">Remove Books</a>
+        <a href="update-bookpg">Update Books</a>
+        <a href="borrow-bookpg">Borrow Book</a>
+        <a href="export-filepg">Export File</a>
+        <a href="pdf-generatorpg">PDF Generator</a>
+</div>
+<div>
+    <footer class="footer"><b>Copyright &#169; Venu Corporations</b></footer>
+</div>
+
+    {% block body %}{% endblock %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/memories.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+/* login.html */
+.setting-login{
+    margin: 20px auto 95px auto;
+    width: 80%;
+    padding: 100px;
+}
+
+.login{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    border: 2px solid #ccc;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.login-btn{
+    background: #427cc5;
+    border: #427cc5;
+    border-radius: 25px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* layout.html */
+.options{
+    width: 20%;
+    background-color: #FFA07A;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 80px;
+}
+
+.options a{
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    padding: 27px 0 5px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.options a:hover{
+    background-color: rgba(0,0,0,.35);
+}
+
+.header{
+    background-color: #FF4500;
+    text-align: center;
+    color: white;
+    top: 0;
+    left: 0;
+    height: 10%;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+}
+
+.index{
+    text-align: right;
+    background-color: #FFA07A;
+    margin-left: 1040px;
+    width: 18%;
+    border-radius: 25px;
+    color: white;
+}
+
+.index a{
+    background-color: #FF4500;
+    text-decoration: none;
+    color: white;
+    border-radius: 25px;
+}
+
+.footer{
+    color: white;
+    padding-top: 25px;
+    text-align: center;
+    background-color: #FF4500;
+    height: 5%;
+    z-index: 999;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+/* index.html */
+.heading-index{
+    text-align: center;
+    margin-top: 5%;
+}
+
+/* add_books.html */
+.add-form{
+    padding: 50px 0 0 250px;
+}
+
+input[type=text], input[type=number], input[type=date]{
+    width: 80%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=date], input[type=number] {
+    width: 20% !important;
+    display: inline-block !important;
+}
+
+.buttons-bottom{
+    background: #FFA07A;
+    color: #fff;
+    padding: 15px 20px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    width: 25%;
+    border-radius: 25px;
+}
+
+.inside-form{
+    border: 1px solid #ced4da;
+    height: 100%;
+    margin: auto auto 95px 50px;
+    width: 80%;
+    background: white;
+    padding: 20px;
+}
+
+/* view_books.html */
+
+.responsive-table{
+    border-collapse: collapse;
+    margin: 0 0 0 10px;
+}
+
+.responsive-table td{
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
+
+.responsive-table th{
+    padding: 0 50px 0 50px;
+    border: 1px solid black;
+    background: #ddd;
+}
+
+.short{
+    padding: 0 10px 0 10px !important;
+}
+
+/* remove_books.html */
+.func-btn{
+    background: #FFA07A;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    text-decoration: none;
+    padding: 5px 5px 5px 5px;
+}

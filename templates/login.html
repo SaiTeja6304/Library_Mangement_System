@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lms.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Library Management System</title>
+</head>
+
+<body>
+    <div class="setting-login">
+        <form action="/login" method="post" class="login">
+            <h1>Please Login</h1>
+            <input autocomplete="off" autofocus name="name" placeholder="Username" type="text">
+            <input class="login-btn" type="submit" value="Log In">
+        </form>
+    </div>
+</body>
+
+</html>

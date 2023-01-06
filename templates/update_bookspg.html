@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="heading-index">
+    <h1>Update Book Information</h1>
+</div>
+
+<div class="add-form">
+    <div class="inside-form">
+    <form method="post" action="/books-update">
+
+        <label><b>Author Name</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Author Name" name="updauthname" value="{{ udata[0][1] }}" required>
+
+        <label><b>Book Name</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Book Name" name="updbname" value="{{ udata[0][2] }}" required>
+
+        <label><b>Genre</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Book Genre" name="updbgenre" value="{{ udata[0][3] }}" required>
+
+        <label><b>Quantity</b></label>
+        <input autocomplete="off" type="number" placeholder="Enter Quantity" name="updbquantity" min="0" value="{{ udata[0][4] }}" required>
+
+        <label><b>Price</b></label>
+        <input autocomplete="off" type="number" placeholder="Enter Price" name="updbprice" min="0" value="{{ udata[0][5] }}" required>
+
+        <input autocomplete="off" type="hidden" name="updbid" value="{{ udata[0][0] }}" readonly>
+        <div>
+            <button class="buttons-bottom" type="submit" name="upd-book" value="upd-book">UPDATE BOOK</button>
+            <button class="buttons-bottom" type="reset">RESET</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+
+{% endblock %}

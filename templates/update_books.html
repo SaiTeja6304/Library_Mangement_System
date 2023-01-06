@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="heading-index">
+    <h1>Update Books</h1>
+</div>
+
+<div class="add-form">
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Author Name</th>
+                <th>Book Name</th>
+                <th>Genre</th>
+                <th class="short">Quantity</th>
+                <th class="short">Price</th>
+                <th>UPDATE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in libdata %}
+            <tr>
+                <td>{{ data[0] }}</td>
+                <td>{{ data[1] }}</td>
+                <td>{{ data[2] }}</td>
+                <td>{{ data[3] }}</td>
+                <td>{{ data[4] }}</td>
+                <td>{{ data[5] }}</td>
+                <td><a href="update-pg/{{ data[0] }}" class="func-btn">UPDATE</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

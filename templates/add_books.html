@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="heading-index">
+    <h1>Add Books</h1>
+</div>
+
+<div class="add-form">
+    <div class="inside-form">
+    <form method="post" action="/book-added">
+        <label><b>Author Name</b></label>
+        <input autofocus autocomplete="off" type="text" placeholder="Enter Author Name" name="authname" required>
+
+        <label><b>Book Name</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Book Name" name="bname" required>
+
+        <label><b>Genre</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Book Genre" name="bgenre" required>
+
+        <label><b>Quantity</b></label>
+        <input autocomplete="off" type="number" placeholder="Enter Quantity" name="bquantity" min="0" required>
+
+        <label><b>Price</b></label>
+        <input autocomplete="off" type="number" placeholder="Enter Price" name="bprice" min="0" required>
+    <div>
+         <button class="buttons-bottom" type="submit" name="add-book" value="add-book">SAVE</button>
+         <button class="buttons-bottom" type="reset">RESET</button>
+    </div>
+    </form>
+    </div>
+</div>
+
+{% endblock %}
