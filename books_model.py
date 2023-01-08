@@ -50,6 +50,11 @@ class booksModel():
         self.cur.execute("UPDATE books SET authorname = ?, bookname = ?, genre = ?, quantity = ?, price = ? WHERE bookid = ?", (authname, bname, bgenre, bquantity, bprice, bid))
         self.conn.commit()
 
+    def delete_book(self, bId):
+        self.cur.execute("DELETE FROM books WHERE bookid=?", (bId,))
+        self.conn.commit()
+
+
     def __del__(self):
         self.cur.close()
         self.conn.close()

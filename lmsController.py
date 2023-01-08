@@ -42,8 +42,12 @@ class libraryController():
         bookdata = bm.fetch()
         return render_template("remove_books.html", libdata = bookdata)
 
-    def remove_action(self, bkid):
-        bm = booksModel(app)
+    def remove_action(self):
+        if request.method == "GET":
+            bId = request.args.get("bId")
+            bm = booksModel(app)
+            bm.delete_book(bId)
+        return bId
 
     def update_books(self):
         bm = booksModel(app)
@@ -78,8 +82,8 @@ class libraryController():
                 flash("Book Updated Successfully", "info")
                 return redirect("/")
 
-    def borrow_books(self):
-        return render_template("borrow_books.html")
+    def books_available(self):
+        return render_template("books_available.html")
 
     def export_file(self):
         return render_template("export_file.html")

@@ -31,12 +31,13 @@ app.add_url_rule("/view-bookpg", view_func=lc.view_books)
 app.add_url_rule("/add-bookpg", view_func=lc.add_books)
 app.add_url_rule("/rem-bookpg", view_func=lc.remove_books)
 app.add_url_rule("/update-bookpg", view_func=lc.update_books)
-app.add_url_rule("/borrow-bookpg", view_func=lc.borrow_books)
+app.add_url_rule("/borrow-availpg", view_func=lc.books_available)
 app.add_url_rule("/export-filepg", view_func=lc.export_file)
 app.add_url_rule("/pdf-generatorpg", view_func=lc.pdf_generator)
 app.add_url_rule("/book-added", methods=['GET', 'POST'], view_func=lc.add_books_return)
 app.add_url_rule("/update-pg/<string:BID>", methods=['GET', 'POST'], view_func=lc.show_update_infopg)
 app.add_url_rule("/books-update", methods=['GET', 'POST'], view_func=lc.update_after)
+app.add_url_rule("/delete-book", methods=['GET', 'POST'], view_func=lc.remove_action)
 
 # Settings for creating session
 app.config["SESSION_PERMANENT"] = False
