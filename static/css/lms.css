@@ -90,6 +90,27 @@
     bottom: 0;
 }
 
+.top-links-support{
+    text-align: right;
+}
+
+.top-links{
+    background-color: #FFA07A;
+    border-radius: 25px;
+    text-decoration: none;
+    color: black;
+}
+
+.top-links a{
+    cursor: pointer;
+}
+
+.title{
+    text-align: center !important;
+    color: white;
+    top: 0;
+}
+
 /* index.html */
 .heading-index{
     text-align: center;

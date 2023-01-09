@@ -90,3 +90,6 @@ class libraryController():
 
     def pdf_generator(self):
         return render_template("pdf_generator.html")
+
+    def show_customer_actions(self):
+        return render_template("customer_dashboard.html")
