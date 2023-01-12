@@ -54,6 +54,10 @@ class booksModel():
         self.cur.execute("DELETE FROM books WHERE bookid=?", (bId,))
         self.conn.commit()
 
+    def book_available(self, tocheck):
+        self.cur.execute("SELECT quantity from books WHERE bookid=? OR bookname=?", (tocheck, ))
+        availquantity = self.cur.fetchall()
+        return availquantity
 
     def __del__(self):
         self.cur.close()

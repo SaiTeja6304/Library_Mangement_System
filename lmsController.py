@@ -85,6 +85,9 @@ class libraryController():
     def books_available(self):
         return render_template("books_available.html")
 
+    def check_book_availability(self):
+
+
     def export_file(self):
         return render_template("export_file.html")
 
