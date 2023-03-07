@@ -188,3 +188,13 @@ input[type=date], input[type=number] {
     text-decoration: none;
     padding: 5px 5px 5px 5px;
 }
+
+/* books_available.html */
+.search-book{
+    background: #FFA07A;
+    color: #fff;
+    padding: 15px 20px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    border-radius: 25px;
+}

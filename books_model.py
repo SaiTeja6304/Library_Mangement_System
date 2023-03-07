@@ -55,8 +55,9 @@ class booksModel():
         self.conn.commit()
 
     def book_available(self, tocheck):
-        self.cur.execute("SELECT quantity from books WHERE bookid=? OR bookname=?", (tocheck, ))
+        self.cur.execute("SELECT quantity from books WHERE bookid=? OR bookname=?", (tocheck, tocheck))
         availquantity = self.cur.fetchall()
+        print(availquantity)
         return availquantity
 
     def __del__(self):

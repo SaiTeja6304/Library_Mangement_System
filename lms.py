@@ -42,6 +42,8 @@ app.add_url_rule("/book-added", methods=['GET', 'POST'], view_func=lc.add_books_
 app.add_url_rule("/update-pg/<string:BID>", methods=['GET', 'POST'], view_func=lc.show_update_infopg)
 app.add_url_rule("/books-update", methods=['GET', 'POST'], view_func=lc.update_after)
 app.add_url_rule("/delete-book", methods=['GET', 'POST'], view_func=lc.remove_action)
+app.add_url_rule("/check-book", methods=['GET', 'POST'], view_func=lc.check_book_availability)
+app.add_url_rule("/check-book-by-name", methods=['GET', 'POST'], view_func=lc.check_book_avail_by_name)
 
 # customer routing
 app.add_url_rule("/view-customerspg", view_func=cc.view_customers)

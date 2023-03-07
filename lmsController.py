@@ -1,3 +1,5 @@
+import json
+
 from flask import render_template, redirect, request, app, flash
 from books_model import booksModel
 from books_encap import Books
@@ -86,7 +88,33 @@ class libraryController():
         return render_template("books_available.html")
 
     def check_book_availability(self):
+        empty = 0
+        text = "Book Not Exist"
+        if request.method == "GET":
+            tocheck = request.args.get("bookid")
+            bm = booksModel(app)
+            bquant = bm.book_available(tocheck)
+            if len(bquant) == 0:
+                return json.dumps(text)
+            elif bquant[0][0] == 0:
+                return json.dumps(empty)
+            else:
+                return json.dumps(bquant) #pass data to javascript
 
+    def check_book_avail_by_name(self):
+        empty = 0
+        text = "Book Not Exist"
+        if request.method == "GET":
+            tocheck = request.args.get("bkname")
+            print(tocheck)
+            bm = booksModel(app)
+            bquant = bm.book_available(tocheck)
+            if len(bquant) == 0:
+                return json.dumps(text)
+            elif bquant[0][0] == 0:
+                return json.dumps(empty)
+            else:
+                return json.dumps(bquant)
 
     def export_file(self):
         return render_template("export_file.html")

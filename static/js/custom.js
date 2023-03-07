@@ -12,3 +12,75 @@ $('.delete-book').click(function(){
         }
     });
 });
+
+$('.book-avail').click(function(){
+    var searchId = $('#bookid').val()
+    console.log(searchId);
+    $.ajax({
+        type : 'GET',
+        url : "/check-book",
+        contentType: 'application/json;charset=UTF-8',
+        data : {'bookid':searchId},
+        success: function(data,status){
+            var datatoshow = JSON.parse(data);
+            if(datatoshow === 'Book Not Exist'){
+                document.getElementById('showinfo').style.display = 'block';
+                document.getElementById('showinfo').innerHTML = 'Book ID Does Not Exist';
+            }
+            else if(datatoshow.length > 0){
+                document.getElementById('showinfo').style.display = 'block';
+                document.getElementById('showinfo').innerHTML = 'Book Available';
+            }
+            else{
+                document.getElementById('showinfo').style.display = 'block';
+                document.getElementById('showinfo').innerHTML = 'Book Not Available';
+            }
+        }
+    });
+});
+
+$('.book-avail-name').click(function(){
+    var searchName = $('#bkname').val()
+    console.log(searchName);
+    $.ajax({
+        type : 'GET',
+        url : "/check-book-by-name",
+        contentType: 'application/json;charset=UTF-8',
+        data : {'bkname':searchName},
+        success: function(data,status){
+            var datatoshow = JSON.parse(data);
+            if(datatoshow === 'Book Not Exist'){
+                document.getElementById('showinfo').style.display = 'block';
+                document.getElementById('showinfo').innerHTML = 'Book Name Does Not Exist';
+            }
+            else if(datatoshow.length > 0){
+                document.getElementById('showinfo').style.display = 'block';
+                document.getElementById('showinfo').innerHTML = 'Book Available';
+            }
+            else{
+                document.getElementById('showinfo').style.display = 'block';
+                document.getElementById('showinfo').innerHTML = 'Book Not Available';
+            }
+        }
+    });
+});
+
+/*
+function searchBook(){
+    var searchId = $('#bookid').val()
+    console.log(searchId);
+    $.ajax({
+        type : 'GET',
+        url : "/check-book",
+        contentType: 'application/json;charset=UTF-8',
+        data : {'bookid':searchId},
+        success: function(data,status){
+            var datatoshow = JSON.parse(data);
+            if(datatoshow > 0){
+                document.getElementById('showinfo').style.display = 'block';
+                document.getElementById('showinfo').innerHTML = 'Book Available';
+            }
+        }
+    });
+}
+*/

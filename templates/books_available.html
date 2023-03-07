@@ -8,21 +8,27 @@
 
 <div class="add-form">
     <div class="inside-form">
-    <form method="post" action="/book-success">
         <label><b>Book ID Search</b></label>
-        <input autocomplete="off" type="text" placeholder="Enter book ID" name="bid">
+        <table>
+            <tr>
+                <td><input autocomplete="off" type="text" id='bookid' placeholder="Enter book ID" name="bid"></td>
+                <td><button type="button" class="search-book book-avail">Search</button></td>
+            </tr>
+        </table>
 
-        <div>
-            <button class="buttons-bottom" type="submit" name="book-id-ch" value="book-id-ch">SEARCH</button>
-        </div>
         <br>
         <label><b>Book Name Search</b></label>
-        <input autocomplete="off" type="text" placeholder="Enter book name" name="bname">
+        <table>
+            <tr>
+                <td><input autocomplete="off" type="text" id="bkname" placeholder="Enter book name" name="bname"></td>
+                <td><input type="button" class="search-book book-avail-name" value="Search"></td>
+            </tr>
+        </table>
 
-        <div>
-            <button class="buttons-bottom" type="submit" name="book-name-ch" value="book-name-ch">SEARCH</button>
+        <div id="showinfo" style="display:none">
+
         </div>
-    </form>
+
     </div>
 </div>
 
