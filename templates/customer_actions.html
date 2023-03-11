@@ -22,15 +22,15 @@
         </thead>
         <tbody>
             {% for data in custdata %}
-            <tr>
+            <tr class="cust-{{ data[0] }}">
                 <td>{{ data[0] }}</td>
                 <td>{{ data[1] }}</td>
                 <td>{{ data[2] }}</td>
                 <td>{{ data[3] }}</td>
                 <td>{{ data[4] }}</td>
                 <td>{{ data[5] }}</td>
-                <td><a href="update-pg/{{ data[0] }}" class="func-btn">UPDATE</a></td>
-                <td><button data-dattr-id = {{ data[0] }} type="button" class="delete-book func-btn">DELETE</button></td>
+                <td><a href="update-custpg/{{ data[0] }}" class="func-btn">UPDATE</a></td>
+                <td><button data-cust-id = {{ data[0] }} type="button" class="delete-cust func-btn">DELETE</button></td>
             </tr>
             {% endfor %}
         </tbody>

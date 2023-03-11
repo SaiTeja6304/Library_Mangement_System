@@ -1,0 +1,38 @@
+{% extends "layoutCustomer.html" %}
+
+{% block body %}
+
+<div class="heading-index">
+    <h1>Update Customer</h1>
+</div>
+
+<div class="add-form">
+    <div class="inside-form">
+    <form method="post" action="/customer-update">
+
+        <label><b>Customer Name</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Customer Name" name="updcustname" value="{{ udata[0][1] }}" required>
+
+        <label><b>Customer Email</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Customer Email" name="updcustemail" value="{{ udata[0][2] }}" required>
+
+        <label><b>Phone Number</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Phone Number" name="updcustnum" value="{{ udata[0][3] }}" required>
+
+        <label><b>Address</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Address" name="updcustaddr" value="{{ udata[0][4] }}" required>
+        <br>
+        <label><b>Booklist</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter Booklist" name="updbooklist" value="{{ udata[0][5] }}">
+
+        <input autocomplete="off" type="hidden" name="updcustid" value="{{ udata[0][0] }}" readonly>
+        <div>
+            <button class="buttons-bottom" type="submit" name="upd-cust" value="upd-cust">UPDATE CUSTOMER</button>
+            <button class="buttons-bottom" type="reset">RESET</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+
+{% endblock %}

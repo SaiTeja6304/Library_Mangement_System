@@ -7,12 +7,14 @@ import customerController
 
 # for database the class is imported
 from books_model import booksModel
+from customer_model import customerModel
 
 # Initial command
 app = Flask(__name__)
 
 # For database connection
 db = booksModel("lib.db")
+db2 = customerModel("lib.db")
 
 # Creating login object by calling login filename with Login class name created in login file,
 # app is parameter
@@ -51,6 +53,10 @@ app.add_url_rule("/add-customerpg", view_func=cc.add_customer)
 app.add_url_rule("/customer-actionspg", view_func=cc.customer_actions)
 app.add_url_rule("/borrow-bookpg", view_func=cc.borrow_book)
 app.add_url_rule("/view-borrowerspg", view_func=cc.view_borrowers)
+app.add_url_rule("/customer-added", methods=['GET', 'POST'], view_func=cc.customer_added)
+app.add_url_rule("/update-custpg/<string:CustID>", methods=['GET', 'POST'], view_func=cc.upd_cust)
+app.add_url_rule("/customer-update", methods=['GET', 'POST'], view_func=cc.upd_cust_after)
+app.add_url_rule("/delete-cust", methods=['GET', 'POST'], view_func=cc.delete_customer)
 
 # Settings for creating session
 app.config["SESSION_PERMANENT"] = False

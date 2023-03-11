@@ -13,6 +13,20 @@ $('.delete-book').click(function(){
     });
 });
 
+$('.delete-cust').click(function(){
+    var cId = $(this).attr('data-cust-id')
+    console.log(cId)
+    $.ajax({
+        type : 'GET',
+        url : "/delete-cust",
+        contentType: 'application/json;charset=UTF-8',
+        data : {'cId':cId},
+        success: function(data,status){
+            $('.cust-'+data).remove();
+        }
+    });
+});
+
 $('.book-avail').click(function(){
     var searchId = $('#bookid').val()
     console.log(searchId);
