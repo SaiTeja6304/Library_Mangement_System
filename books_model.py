@@ -60,6 +60,12 @@ class booksModel():
         print(availquantity)
         return availquantity
 
+    def export_bk(self):
+        self.cur.execute("SELECT * FROM books")
+        bkdata = self.cur.fetchall()
+        return bkdata
+
+
     def __del__(self):
         self.cur.close()
         self.conn.close()

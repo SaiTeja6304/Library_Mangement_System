@@ -1,6 +1,7 @@
 import json
 import os
 import smtplib
+import csv
 from flask import render_template, redirect, request, app, flash
 from customer_model import customerModel
 from customer_encap import Customer
@@ -151,3 +152,22 @@ class customer():
 
             return custid
 
+    def export_customers(self):
+        cm = customerModel(app)
+        filename = "customers"
+        myfilename = filename + ".csv"
+        with open(myfilename, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(['Custid', 'Custname', 'Emailid', 'Phone Number', 'Address', 'Booklist'])
+            writer.writerows(cm.export_cust())
+        return redirect("/export-filepg")
+
+    def export_borrowers(self):
+        cm = customerModel(app)
+        filename = "borrowers"
+        myfilename = filename + ".csv"
+        with open(myfilename, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(['Custid', 'Custname', 'Book Name', 'Return Data'])
+            writer.writerows(cm.export_borrow())
+        return redirect("/export-filepg")

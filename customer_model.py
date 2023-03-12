@@ -92,6 +92,16 @@ class customerModel():
         email = self.cur.fetchall()
         return email
 
+    def export_cust(self):
+        self.cur.execute("SELECT * FROM customers")
+        custdata = self.cur.fetchall()
+        return custdata
+
+    def export_borrow(self):
+        self.cur.execute("SELECT * FROM borrowers")
+        borrowdt = self.cur.fetchall()
+        return borrowdt
+
     def __del__(self):
         self.cur.close()
         self.conn.close()

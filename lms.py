@@ -46,6 +46,7 @@ app.add_url_rule("/books-update", methods=['GET', 'POST'], view_func=lc.update_a
 app.add_url_rule("/delete-book", methods=['GET', 'POST'], view_func=lc.remove_action)
 app.add_url_rule("/check-book", methods=['GET', 'POST'], view_func=lc.check_book_availability)
 app.add_url_rule("/check-book-by-name", methods=['GET', 'POST'], view_func=lc.check_book_avail_by_name)
+app.add_url_rule("/export-books", view_func=lc.export_books)
 
 # customer routing
 app.add_url_rule("/view-customerspg", view_func=cc.view_customers)
@@ -61,6 +62,8 @@ app.add_url_rule("/check-cid-borrow", methods=['GET', 'POST'], view_func=cc.chec
 app.add_url_rule("/borrow-success", methods=['GET', 'POST'], view_func=cc.add_borrower)
 app.add_url_rule("/delete-borrow", methods=['GET', 'POST'], view_func=cc.return_borrow)
 app.add_url_rule("/mail-borrow", methods=['GET', 'POST'], view_func=cc.send_email)
+app.add_url_rule("/export-cust", view_func=cc.export_customers)
+app.add_url_rule("/export-borrow", view_func=cc.export_borrowers)
 
 # Settings for creating session
 app.config["SESSION_PERMANENT"] = False

@@ -1,5 +1,5 @@
 import json
-
+import csv
 from flask import render_template, redirect, request, app, flash
 from books_model import booksModel
 from books_encap import Books
@@ -118,6 +118,16 @@ class libraryController():
 
     def export_file(self):
         return render_template("export_file.html")
+
+    def export_books(self):
+        bm = booksModel(app)
+        filename = "books"
+        myfilename = filename + ".csv"
+        with open(myfilename, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(['Bookid', 'Authorname', 'Bookname', 'Genre', 'Quantity', 'Price'])
+            writer.writerows(bm.export_bk())
+        return redirect("/export-filepg")
 
     def pdf_generator(self):
         return render_template("pdf_generator.html")
