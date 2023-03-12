@@ -7,6 +7,9 @@ class customerModel():
         self.cur.execute("""CREATE TABLE IF NOT EXISTS customers (custid TEXT PRIMARY KEY, 
                 custname TEXT NOT NULL, emailid TEXT NOT NULL, pnum TEXT NOT NULL, 
                 address TEXT NOT NULL, booklist TEXT NOT NULL)""")
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS borrowers(custid TEXT NOT NULL, 
+        custname TEXT NOT NULL, bkname TEXT NOT NULL, returndate DATE, 
+        FOREIGN KEY(custid) REFERENCES customers(custid))""")
         self.conn.commit()
 
     def add_cust(self, custs):
@@ -52,7 +55,42 @@ class customerModel():
 
     def delete_cust(self, cid):
         self.cur.execute("DELETE FROM customers where custid=?", (cid,))
+        self.cur.execute("DELETE FROM borrowers WHERE custid=?", (cid,))
         self.conn.commit()
+
+    def valid_cust(self, cid):
+        self.cur.execute("SELECT * FROM customers where custid=?", (cid,))
+        ciddata = self.cur.fetchall()
+        return ciddata
+
+    def borrower(self, custid, custname, bkname, rtndt):
+        self.cur.execute("INSERT INTO borrowers (custid, custname, bkname, returndate) VALUES (?, ?, ?, ?)", (custid, custname, bkname, rtndt))
+        self.conn.commit()
+
+    def add_booklist(self, custid, bkname):
+        self.cur.execute("SELECT booklist FROM customers WHERE custid=?", (custid,))
+        booklist = self.cur.fetchall()
+        newlist = "0"
+        if len(booklist[0][0]) == 0:
+            newlist = booklist[0][0] + str(bkname)
+        else:
+            newlist = booklist[0][0] + ", " + str(bkname)
+        self.cur.execute("UPDATE customers SET booklist=? WHERE custid=?", (newlist, custid))
+        self.conn.commit()
+
+    def fetch_borrowers(self):
+        self.cur.execute("SELECT * FROM borrowers")
+        borrowdata = self.cur.fetchall()
+        return borrowdata
+
+    def del_borrow(self, custid, bkname):
+        self.cur.execute("DELETE FROM borrowers WHERE custid=? AND bkname=?", (custid, bkname))
+        self.conn.commit()
+
+    def fetch_email(self, custid):
+        self.cur.execute("SELECT emailid FROM customers WHERE custid=?", (custid,))
+        email = self.cur.fetchall()
+        return email
 
     def __del__(self):
         self.cur.close()

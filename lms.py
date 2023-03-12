@@ -57,6 +57,10 @@ app.add_url_rule("/customer-added", methods=['GET', 'POST'], view_func=cc.custom
 app.add_url_rule("/update-custpg/<string:CustID>", methods=['GET', 'POST'], view_func=cc.upd_cust)
 app.add_url_rule("/customer-update", methods=['GET', 'POST'], view_func=cc.upd_cust_after)
 app.add_url_rule("/delete-cust", methods=['GET', 'POST'], view_func=cc.delete_customer)
+app.add_url_rule("/check-cid-borrow", methods=['GET', 'POST'], view_func=cc.check_valid_customer)
+app.add_url_rule("/borrow-success", methods=['GET', 'POST'], view_func=cc.add_borrower)
+app.add_url_rule("/delete-borrow", methods=['GET', 'POST'], view_func=cc.return_borrow)
+app.add_url_rule("/mail-borrow", methods=['GET', 'POST'], view_func=cc.send_email)
 
 # Settings for creating session
 app.config["SESSION_PERMANENT"] = False

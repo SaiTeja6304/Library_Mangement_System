@@ -12,7 +12,6 @@
             <tr>
                 <th class="short">Customer ID</th>
                 <th>Customer Name</th>
-                <th>Book ID</th>
                 <th>Book Name</th>
                 <th>Return Date</th>
                 <th class="short">Returned</th>
@@ -26,9 +25,8 @@
                 <td>{{ data[1] }}</td>
                 <td>{{ data[2] }}</td>
                 <td>{{ data[3] }}</td>
-                <td>{{ data[4] }}</td>
-                <td><button data-dattr-id = {{ data[0] }} type="button" class="delete-book func-btn">RETURN</button></td>
-                <td><a href="update-pg/{{ data[0] }}" class="func-btn">MESSAGE</a></td>
+                <td><button data-del-borrow = {{ data[0] }} data-del-bkname = {{ data[2] }} type="button" class="delete-borrow func-btn">RETURN</button></td>
+                <td><button data-borrow-id = {{ data[0] }} data-borrow-name = {{ data[1] }} data-borrow-bkname = {{ data[2] }} data-borrow-data = {{ data[3] }} type="button" class="mail-borrow func-btn">MESSAGE</button></td>
             </tr>
             {% endfor %}
         </tbody>

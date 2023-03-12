@@ -79,6 +79,63 @@ $('.book-avail-name').click(function(){
     });
 });
 
+$('.bb-cid').click(function(){
+    var custId = $('#cid').val()
+    console.log(custId);
+    $.ajax({
+        type : 'GET',
+        url : "/check-cid-borrow",
+        contentType: 'application/json;charset=UTF-8',
+        data : {'custId':custId},
+        success: function(data,status){
+            var datatoshow = JSON.parse(data);
+            if(datatoshow.length > 0){
+                $('#hide-cid').hide();
+                document.getElementById('show-form').style.display = 'block';
+                $('#custid').val(datatoshow[0][0]);
+                $('#custname').val(datatoshow[0][1]);
+            }
+            else{
+                alert('CUSTOMER DOES NOT EXIST');
+            }
+        }
+    });
+});
+
+$('.delete-borrow').click(function(){
+    var thisRow = $(this).parents('tr');
+    var custId = $(this).attr('data-del-borrow')
+    var bkname = $(this).attr('data-del-bkname')
+    console.log(custId)
+    $.ajax({
+        type : 'GET',
+        url : "/delete-borrow",
+        contentType: 'application/json;charset=UTF-8',
+        data : {'custId':custId, 'bkname':bkname},
+        success: function(data,status){
+            thisRow.remove();
+        }
+    });
+});
+
+$('.mail-borrow').click(function(){
+    var custid = $(this).attr('data-borrow-id')
+    var custname = $(this).attr('data-borrow-name')
+    var bkname = $(this).attr('data-borrow-bkname')
+    var rtndt = $(this).attr('data-borrow-data')
+    console.log(custname)
+    $.ajax({
+        type : 'GET',
+        url : "/mail-borrow",
+        contentType: 'application/json;charset=UTF-8',
+        data : {'custid':custid ,'custname':custname, 'bkname':bkname, 'rtndt':rtndt},
+        success: function(data,status){
+            alert('Reminder Sent');
+        }
+    });
+});
+
+
 /*
 function searchBook(){
     var searchId = $('#bookid').val()

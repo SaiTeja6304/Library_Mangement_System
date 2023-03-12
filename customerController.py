@@ -1,3 +1,6 @@
+import json
+import os
+import smtplib
 from flask import render_template, redirect, request, app, flash
 from customer_model import customerModel
 from customer_encap import Customer
@@ -80,6 +83,71 @@ class customer():
     def borrow_book(self):
         return render_template("borrow_book.html")
 
+    def check_valid_customer(self):
+        if request.method == "GET":
+            cid = request.args.get("custId")
+            cm = customerModel(app)
+            ciddata = cm.valid_cust(cid)
+            return json.dumps(ciddata)
+
+    def add_borrower(self):
+        if request.method == "POST":
+            if request.form.get("borrow-confirm"):
+                custid = request.form.get("custid")
+                custname = request.form.get("custname")
+                bkname = request.form.get("bkname")
+                rtndt = request.form.get("rtndt")
+
+                cm = customerModel(app)
+                cm.borrower(custid, custname, bkname, rtndt)
+                cm.add_booklist(custid, bkname)
+
+                flash("Borrow Successfully", "info")
+                return redirect("/customer-actions")
+
     def view_borrowers(self):
-        return render_template("view_borrowers.html")
+        cm = customerModel(app)
+        borrowdata = cm.fetch_borrowers()
+        return render_template("view_borrowers.html", borrowdata = borrowdata)
+
+    def return_borrow(self):
+        if request.method == "GET":
+            custid = request.args.get("custId")
+            bkname = request.args.get("bkname")
+
+            cm = customerModel(app)
+            cm.del_borrow(custid, bkname)
+
+            return custid, bkname
+
+    def send_email(self):
+        if request.method == "GET":
+            custid = request.args.get("custid")
+            custname = request.args.get("custname")
+            bkname = request.args.get("bkname")
+            date = request.args.get("rtndt")
+
+            cm = customerModel(app)
+            email = cm.fetch_email(custid)
+
+            EMAIL_ADDRESS = os.environ.get('MAIL_DEFAULT_SENDER')
+            EMAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
+            with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+                smtp.ehlo()
+                smtp.starttls()
+                smtp.ehlo()
+
+                smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+
+                subject = 'Library Remainder'
+                body = f"""Dear Customer \n {custname}, This is a remainder to return the borrowed 
+                book {bkname} from library by the date:{date} \n Thank you for using our 
+                library resources\n For any further queries please contact +919885983806"""
+
+                msg = f'Subject: {subject}\n\n {body}'
+
+                smtp.sendmail(EMAIL_ADDRESS, email, msg)
+
+            return custid
 

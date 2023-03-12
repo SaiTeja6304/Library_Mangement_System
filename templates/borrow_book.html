@@ -6,28 +6,58 @@
     <h1>Borrow Book</h1>
 </div>
 
-<div class="add-form">
+<div class="add-form" id="hide-cid">
     <div class="inside-form">
-    <form method="post" action="/grades-success">
+    <form method="post">
         <label><b>Customer ID Search</b></label>
-        <input autocomplete="off" autofocus type="text" placeholder="Enter Customer ID" name="custid" required>
+        <input autocomplete="off" autofocus type="text" id="cid" placeholder="Enter Customer ID" name="custid" required>
 
         <div>
-            <button class="buttons-bottom" type="submit" name="cust-ch" value="cust-ch">SEARCH</button>
+            <button class="buttons-bottom bb-cid" type="button">SEARCH</button>
             <button class="buttons-bottom" type="reset">RESET</button>
         </div>
     </form>
     </div>
 </div>
-<!-- if quantity available and customer exists -->
-<div class="add-form">
+
+<div class="add-form" id="show-form" style="display:none">
     <div class="inside-form">
         <form method="post" action="/borrow-success">
+            <label><b>Customer ID</b></label>
+            <input id="custid" autocomplete="off" type="text" placeholder="Enter Customer ID" name="custid" readonly>
+
             <label><b>Customer Name</b></label>
-            <input autocomplete="off" type="text" placeholder="Enter Customer Name" name="custname" readonly>
+            <input id="custname" autocomplete="off" type="text" placeholder="Enter Customer Name" name="custname" readonly>
+
+            <label><b>Book Name</b></label>
+            <input autocomplete="off" autofocus type="text" placeholder="Enter Book Name" name="bkname" required>
+
+            <label><b>Return Date</b></label>
+            <input autocomplete="off" type="date" name="rtndt" required>
+
+            <div>
+                <button class="buttons-bottom" type="submit" name="borrow-confirm" value="borrow-confirm">SAVE</button>
+                <button class="buttons-bottom" type="reset">RESET</button>
+            </div>
         </form>
     </div>
-
 </div>
+
+<!-- if quantity available and customer exists -->
+<!--
+<div class="add-form" id="show-bk" style="display:none">
+    <div class="inside-form">
+        <form method="post">
+            <label><b>Book Name</b></label>
+            <input autocomplete="off" autofocus type="text" id="bname" placeholder="Enter Book Name" name="bkname" required>
+
+            <div>
+                <button class="buttons-bottom bb-bkname" type="button">SEARCH</button>
+                <button class="buttons-bottom" type="reset">RESET</button>
+            </div>
+        </form>
+    </div>
+</div>
+-->
 
 {% endblock %}
