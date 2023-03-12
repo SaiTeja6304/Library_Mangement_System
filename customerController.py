@@ -2,6 +2,7 @@ import json
 import os
 import smtplib
 import csv
+from fpdf import FPDF
 from flask import render_template, redirect, request, app, flash
 from customer_model import customerModel
 from customer_encap import Customer
@@ -160,6 +161,7 @@ class customer():
             writer = csv.writer(f)
             writer.writerow(['Custid', 'Custname', 'Emailid', 'Phone Number', 'Address', 'Booklist'])
             writer.writerows(cm.export_cust())
+        flash("CSV Generated Successfully", "info")
         return redirect("/export-filepg")
 
     def export_borrowers(self):
@@ -170,4 +172,24 @@ class customer():
             writer = csv.writer(f)
             writer.writerow(['Custid', 'Custname', 'Book Name', 'Return Data'])
             writer.writerows(cm.export_borrow())
+        flash("CSV Generated Successfully", "info")
         return redirect("/export-filepg")
+
+    def generate_pdf_custs(self):
+        # create pdf object
+        pdf = FPDF('P', 'mm', 'Letter')
+        # add a page
+        pdf.add_page()
+        # set font and size
+        pdf.set_font('times', '', 16)
+        cm = customerModel(app)
+        custdt = cm.export_cust()
+        pdf.cell(150, 20, "Custid, Custname, Emailid, Phone Number, Address, Booklist", ln=True, border=True)
+        for cust in custdt:
+            # insert data into pdf
+            pdf.cell(150, 20, str(cust), ln=True, border=True)
+
+        # create pdf and name it
+        pdf.output('customers.pdf')
+        flash("PDF Generated Successfully", "info")
+        return redirect("/pdf-generatorpg")

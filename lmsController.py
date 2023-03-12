@@ -1,6 +1,7 @@
 import json
 import csv
 from flask import render_template, redirect, request, app, flash
+from fpdf import FPDF
 from books_model import booksModel
 from books_encap import Books
 
@@ -127,10 +128,30 @@ class libraryController():
             writer = csv.writer(f)
             writer.writerow(['Bookid', 'Authorname', 'Bookname', 'Genre', 'Quantity', 'Price'])
             writer.writerows(bm.export_bk())
+        flash("CSV Generated Successfully", "info")
         return redirect("/export-filepg")
 
     def pdf_generator(self):
         return render_template("pdf_generator.html")
+
+    def generate_pdf_books(self):
+        #create pdf object
+        pdf = FPDF('P', 'mm', 'Letter')
+        #add a page
+        pdf.add_page()
+        #set font and size
+        pdf.set_font('times', '', 16)
+        bm = booksModel(app)
+        bookdt = bm.export_bk()
+        pdf.cell(120, 20, "Bookid, Authorname, Bookname, Genre, Quantity, Price", ln=True, border=True)
+        for book in bookdt:
+            #insert data into pdf
+            pdf.cell(120, 20, str(book), ln=True, border=True)
+
+        #create pdf and name it
+        pdf.output('books.pdf')
+        flash("PDF Generated Successfully", "info")
+        return redirect("/pdf-generatorpg")
 
     def show_customer_actions(self):
         return render_template("customer_dashboard.html")
